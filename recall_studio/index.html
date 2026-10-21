@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/><meta name="theme-color" content="#6554e8"/><meta name="description" content="Private, offline-first flashcards and study games. Your learning stays yours."/><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-title" content="Recall Studio"/><link rel="icon" href="icons/icon-192.png"/><link rel="apple-touch-icon" href="icons/icon-192.png"/><link rel="manifest" href="manifest.webmanifest"/><link rel="stylesheet" href="styles.css?v=51"/><title>Recall Studio — Learn anywhere, offline</title></head><body>
+<div id="app"></div><div id="modal-root"></div><div id="toast-root" class="toast-holder" aria-live="polite"></div>
+<script>
+(function(){
+ function show(error){var app=document.getElementById('app');if(!app)return;
+ var msg=String((error&&error.message)||error||'Unknown problem');
+ if(app.querySelector('.loading-app')||!app.innerHTML.trim()){
+ app.innerHTML='<main style="margin:40px auto;max-width:540px;padding:24px;font:16px system-ui;color:#18213b"><h1>Recall Studio could not start</h1><p>Please reconnect to the internet and reload. If it still fails, copy this error and share it for troubleshooting.</p><pre id="recall-error" style="white-space:pre-wrap;overflow-wrap:anywhere;background:#eef0fb;padding:16px;border-radius:12px"></pre><button onclick="location.reload()" style="padding:12px;border-radius:8px">Reload</button></main>';
+ document.getElementById('recall-error').textContent=msg;
+ }
+ }
+ window.addEventListener('error',function(e){show(e.error||e.message)});
+ window.addEventListener('unhandledrejection',function(e){show(e.reason)});
+ setTimeout(function(){var app=document.getElementById('app');if(app&&app.querySelector('.loading-app'))show('Startup timed out. Browser storage may be blocked or the app files may be mismatched.');},12000);
+})();
+</script><script src="app.js?v=51"></script></body></html>
